@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '@/components/Header'
-import DocsSidebar from '@/components/DocSidebar'
+import DocsSidebar from '@/components/Docs/Sidebar'
 import Footer from '@/components/Footer'
 
 export default function Home () {

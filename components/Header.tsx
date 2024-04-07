@@ -1,6 +1,8 @@
+"use client"
 import React from 'react'
 import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 import JoinForm from './Join/Form'
+import { DiscordLogoIcon } from '@radix-ui/react-icons'
 
 const Header: React.FC = () => {
 	return (
@@ -17,7 +19,7 @@ const Header: React.FC = () => {
 							/>
 						</a>
 					</div>
-					<nav className="hidden md:flex space-x-10">
+					<nav className="hidden md:flex items-center space-x-10">
 						<Dialog>
 							<DialogTrigger asChild>
 								<a href="#" className="text-base font-medium text-slate-500 hover:text-black">
@@ -26,6 +28,9 @@ const Header: React.FC = () => {
 							</DialogTrigger>
 							<JoinForm />
 						</Dialog>
+						<DiscordLogoIcon className="text-base font-medium text-slate-500 hover:text-black cursor-pointer h-8" 
+							onClick={() => window.open("https://discord.gg/tXaSJS5S", "_blank")}
+						/>
 					</nav>
 				</div>
 			</div>
