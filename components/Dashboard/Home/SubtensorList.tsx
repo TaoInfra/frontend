@@ -1,8 +1,8 @@
 'use client'
-import React, { useState } from 'react';
-import { Card, CardHeader, CardContent, CardFooter, CardTitle, CardDescription } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button'; // Assuming you have a Button component
+import React from 'react';
+import { Card, CardHeader, CardContent, CardTitle, CardDescription } from '@/components/ui/card';
+// import { Input } from '@/components/ui/input';
+// import { Button } from '@/components/ui/button'; // Assuming you have a Button component
 import { getApiKeys } from '@/lib/storage';
 import { ApiKeyData } from '@/types';
 import BadgeWithCopy from '@/components/Landing/JoinGlobal';

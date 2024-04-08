@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button"
 import {
 	Card,
 	CardContent,
-	CardDescription,
 	CardFooter,
 	CardHeader,
 	CardTitle,
@@ -28,7 +27,7 @@ export default function Setting() {
 			return
 		}
 		try {
-			const resp = await fetch(process.env.NEXT_PUBLIC_BACKEND_HOST + "/user/update-name", {
+			await fetch(process.env.NEXT_PUBLIC_BACKEND_HOST + "/user/update-name", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -55,7 +54,7 @@ export default function Setting() {
 							className="grid gap-4 text-sm text-muted-foreground"
 						>
 							<Link href="#" className="font-semibold text-primary">
-              					General
+							General
 							</Link>
 							{/* <Link href="#">Security</Link>
 							<Link href="#">Integrations</Link>

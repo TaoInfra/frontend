@@ -9,19 +9,20 @@ interface User {
 
 declare global {
   interface Window {
+    // eslint-disable-next-line no-unused-vars
     intercomSettings: any;
   }
 }
 
-export const IntercomSettings: React.FC<{ user: User }> = ({ user }) => {
+export const IntercomSettings: React.FC<{ user: User | null | undefined }> = ({ user }) => {
 	useEffect(() => {
 		window.intercomSettings = {
 			api_base: "https://api-iam.intercom.io",
 			app_id: "nlydre5m",
-			name: user.name, // Full name
-			user_id: user.id, // a UUID for your user
-			email: user.email, // the email for your user
-			created_at: user.createdAt, // Signup date as a Unix timestamp
+			name: user?.name, // Full name
+			user_id: user?.id, // a UUID for your user
+			email: user?.email, // the email for your user
+			created_at: user?.createdAt, // Signup date as a Unix timestamp
 		};
 	}, [user]);
 

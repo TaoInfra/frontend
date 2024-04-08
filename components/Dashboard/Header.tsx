@@ -6,7 +6,7 @@ import Link from "next/link"
 import {
 	Home,
 	PanelLeft,
-	Search,
+	// Search,
 } from "lucide-react"
 import { getUser } from "@/lib/storage"
 import {
@@ -26,7 +26,6 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { IntercomScript, IntercomSettings } from "../Embed"
 import { BreadcrumbData } from '@/types'
@@ -175,7 +174,7 @@ export default function DashboardHeader ({ children, breadcrumbList }: { childre
 				{children}
 			</main>
 			<IntercomScript />
-			<IntercomSettings user={{name:  user?.name, id: user?._id, email: user?.email, createdAt: user?.date_created}} />
+			<IntercomSettings user={null} />
 		</div>
 
 	)}

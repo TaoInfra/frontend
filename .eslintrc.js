@@ -34,6 +34,14 @@ module.exports = {
 		"@typescript-eslint/explicit-function-return-type": "off",
 		"@typescript-eslint/no-explicit-any": "warn",
 		"@typescript-eslint/ban-ts-comment": "off",
+		"react/prop-types": "off",
 		"indent": ["error", "tab"]
-	}
+	},
+	"ignorePatterns": [
+		"components/ui/**",
+		".eslintrc.js",
+		"next.config.js",
+		"postcss.config.js"
+	  ],
 }  
+
