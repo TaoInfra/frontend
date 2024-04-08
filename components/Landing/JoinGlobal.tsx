@@ -3,12 +3,15 @@
 import React, { useState, useRef } from 'react';
 import { ClipboardCopyIcon, CheckCircledIcon } from '@radix-ui/react-icons';
 
-const BadgeWithCopy = () => {
+const BadgeWithCopy = ({subtensor, animate}: {subtensor: string | null, animate: boolean}) => {
+	if (!subtensor) {
+		subtensor = 'ws://subtensor.ws'
+	}
 	const [copySuccess, setCopySuccess] = useState(false);
 	const badgeTextRef = useRef(null);
 
 	const copyToClipboard = async () => {
-		const badgeText = badgeTextRef.current?.value;
+		const badgeText = subtensor;
 		try {
 			await navigator.clipboard.writeText(badgeText || '');
 			setCopySuccess(true);
@@ -19,14 +22,14 @@ const BadgeWithCopy = () => {
 	};
 
 	return (
-		<div className="w-full max-w-[16rem] relative">
+		<div className=" relative">
 			<label htmlFor="badgeText" className="sr-only">Copy Badge Text</label>
 			<input 
 				ref={badgeTextRef}
 				id="badgeText" 
 				type="text" 
-				className="inline-flex h-full animate-background-shine cursor-pointer items-center justify-center rounded-full border border-gray-800 bg-[linear-gradient(110deg,#000,45%,#4D4B4B,55%,#000)] bg-[length:250%_100%] px-3 py-1  text-gray-300 col-span-6 bg-gray-50 border border-gray-300 text-slate-600 text-sm font-semibold rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-				value="ws://subtensor.ws" 
+				className={`inline-flex h-full ${animate ? "animate-background-shine " : ""}cursor-pointer items-center justify-center rounded-full border border-gray-800 bg-[linear-gradient(110deg,#000,45%,#4D4B4B,55%,#000)] bg-[length:250%_100%] px-3 py-1 text-gray-300 col-span-6 bg-gray-50 border border-gray-300 text-white text-sm font-semibold rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+				value={subtensor} 
 				disabled 
 				readOnly
 			/>

@@ -1,13 +1,12 @@
 import DocsSidebar from "@/components/Dashboard/Layout";
-
+import SubtensorList from "@/components/Dashboard/Home/SubtensorList";
 import React from 'react'
 
 const DashboardPage: React.FC = () => {
 	return (
-		<DocsSidebar>
+		<DocsSidebar breadcrumbList={[{label: "Dashboard", href: "/dashboard"}, { label: "Home"}]}>
 			<div className="p-4">
-				<h1 className="text-2xl font-bold">Dashboard</h1>
-				<p>Welcome to your dashboard. Here you can manage your API keys, orders, products, customers, and analytics.</p>
+				<SubtensorList />
 			</div>
 		</DocsSidebar>
 	)

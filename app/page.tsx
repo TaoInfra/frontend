@@ -10,9 +10,11 @@ export default function Home () {
 		<div className='min-h-screen'>
 
 			<Header />
-			<main className="flex flex-col items-center justify-between p-24">
+			<main className="flex flex-col items-center justify-between p-10 sm:p-24">
 				<Hero />
-				<BadgeWithCopy />
+				<div className='w-full md:max-w-[16rem]'>
+					<BadgeWithCopy subtensor="ws://subtensor.ws" animate={true}/>
+				</div>
 			</main>
 			<Footer />
 		</div>

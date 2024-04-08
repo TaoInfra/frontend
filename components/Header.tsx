@@ -3,6 +3,7 @@ import React from 'react'
 import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 import JoinForm from './Join/Form'
 import { DiscordLogoIcon } from '@radix-ui/react-icons'
+import { IntercomScript, IntercomSettings } from './Embed'
 
 const Header: React.FC = () => {
 	return (
@@ -34,6 +35,8 @@ const Header: React.FC = () => {
 					</nav>
 				</div>
 			</div>
+			<IntercomScript />
+			<IntercomSettings user={{name:  null, id: null, email: null, createdAt: null}} />
 		</header>
 	)
 }

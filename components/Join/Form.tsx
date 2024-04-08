@@ -17,6 +17,8 @@ import {
 	InputOTPSlot,
 } from "@/components/ui/input-otp"
 import { useToast } from "@/components/ui/use-toast"
+import { setUser, setApiKeys } from "@/lib/storage"
+import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp"
 
 export default function JoinForm() {
 	const [step, setStep] = useState(1)
@@ -79,8 +81,8 @@ export default function JoinForm() {
 				const responseData = await response.json();
 				const user = responseData.user;
 				const apikey = responseData.apikey;
-				localStorage.setItem('user', JSON.stringify(user));
-				localStorage.setItem('apikey', JSON.stringify(apikey));
+				setUser(user);
+				setApiKeys(apikey);
 				window.location.href = '/dashboard';
 			} else {
 				toast({
@@ -125,7 +127,7 @@ export default function JoinForm() {
 					</div>
 				) : (
 					<div className="grid gap-4 justify-items-center">
-						<InputOTP maxLength={6} value={otp} onChange={e => setOtp(e)}>
+						<InputOTP maxLength={6} value={otp} onChange={e => setOtp(e)} pattern={REGEXP_ONLY_DIGITS_AND_CHARS}>
 							<InputOTPGroup>
 								<InputOTPSlot index={0} />
 								<InputOTPSlot index={1} />

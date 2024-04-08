@@ -13,7 +13,7 @@ function LandingHeroOne () {
 				<div className="h-[310px] w-[310px] max-w-full animate-pulse-slow rounded-full bg-[#8678F9] opacity-20 blur-[100px]" />
 			</div>
 			<div>
-				<h1 className="mb-4 font-bold bg-gradient-to-t from-[#6d6d6d] to-[#f4f4f4] bg-clip-text text-4xl text-slate-800 md:text-5xl dark:text-transparent">
+				<h1 className="mb-4 font-bold bg-gradient-to-t from-[#b1b1b1] to-[#b3b3b3] bg-clip-text text-4xl text-slate-800 md:text-5xl dark:text-transparent">
                 Fastest way to get started with Bittensor
 				</h1>
 			</div>
