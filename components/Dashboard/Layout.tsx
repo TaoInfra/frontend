@@ -12,7 +12,7 @@ import {
 	TooltipTrigger,
 } from "@/components/ui/tooltip"
 import DashboardHeader from "./Header"
-
+import { BreadcrumbData } from "@/types"
 export default function DashboardLayout ({ children, breadcrumbList }: { children: React.ReactNode, breadcrumbList: BreadcrumbData[] }) {
 
 	return (

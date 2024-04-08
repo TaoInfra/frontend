@@ -6,11 +6,16 @@ import { Card, CardHeader, CardContent, CardTitle, CardDescription } from '@/com
 import { getApiKeys } from '@/lib/storage';
 import { ApiKeyData } from '@/types';
 import BadgeWithCopy from '@/components/Landing/JoinGlobal';
+import { useState, useEffect } from 'react';
 
 const SubtensorCard = () => {
 
-	const apiKeys = getApiKeys('api');
+	const [apiKeys, setApiKeys] = useState<ApiKeyData[]>([]);
 
+	useEffect(() => {
+		const keys = getApiKeys('api');
+		setApiKeys(keys);
+	}, []);
 	return (
 		<Card>
 			<CardHeader>

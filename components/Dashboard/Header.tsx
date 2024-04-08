@@ -34,9 +34,11 @@ import { BreadcrumbData } from '@/types'
 export default function DashboardHeader ({ children, breadcrumbList }: { children: React.ReactNode, breadcrumbList: BreadcrumbData[] }) {
 	const user = getUser();
 
-	if (!user) {
-		window.location.href = '/';
-	}
+	React.useEffect(() => {
+		if (!user) {
+			window.location.href = '/';
+		}
+	}, [user]);
 
 
 	function handleLogout() {

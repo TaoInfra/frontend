@@ -7,15 +7,10 @@ interface User {
   createdAt: number | null;
 }
 
-declare global {
-  interface Window {
-    // eslint-disable-next-line no-unused-vars
-    intercomSettings: any;
-  }
-}
 
 export const IntercomSettings: React.FC<{ user: User | null | undefined }> = ({ user }) => {
 	useEffect(() => {
+		//@ts-ignore
 		window.intercomSettings = {
 			api_base: "https://api-iam.intercom.io",
 			app_id: "nlydre5m",
