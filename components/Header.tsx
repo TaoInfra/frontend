@@ -3,6 +3,7 @@ import React from 'react'
 import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 import JoinForm from './Join/Form'
 import { DiscordLogoIcon } from '@radix-ui/react-icons'
+import {GitHubLogoIcon} from '@radix-ui/react-icons'
 import { IntercomScript, IntercomSettings } from './Embed'
 
 const Header: React.FC = () => {
@@ -32,6 +33,10 @@ const Header: React.FC = () => {
 						<DiscordLogoIcon className="text-base font-medium text-slate-500 hover:text-black cursor-pointer" 
 							style={{ height: '24px', width: '24px' }}
 							onClick={() => window.open("https://discord.gg/tXaSJS5S", "_blank")}
+						/>
+						<GitHubLogoIcon className="text-base font-medium text-slate-500 hover:text-black cursor-pointer" 
+							style={{ height: '24px', width: '24px' }}
+							onClick={() => window.open("https://github.com/taoinfra/frontend", "_blank")}
 						/>
 					</nav>
 				</div>
