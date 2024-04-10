@@ -13,7 +13,7 @@ export default function Home () {
 			<main className="flex flex-col items-center justify-between p-10 sm:p-24">
 				<Hero />
 				<div className='w-full md:max-w-[16rem]'>
-					<BadgeWithCopy subtensor="ws://subtensor.ws" animate={true}/>
+					<BadgeWithCopy subtensor="public.subtensor.ws" animate={true}/>
 				</div>
 			</main>
 			<Footer />

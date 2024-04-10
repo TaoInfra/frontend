@@ -5,7 +5,7 @@ import { ClipboardCopyIcon, CheckCircledIcon } from '@radix-ui/react-icons';
 
 const BadgeWithCopy = ({subtensor, animate}: {subtensor: string | null, animate: boolean}) => {
 	if (!subtensor) {
-		subtensor = 'ws://subtensor.ws'
+		subtensor = 'public.subtensor.ws'
 	}
 	const [copySuccess, setCopySuccess] = useState(false);
 	const badgeTextRef = useRef(null);
