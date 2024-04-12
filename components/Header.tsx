@@ -5,6 +5,7 @@ import JoinForm from './Join/Form'
 import { DiscordLogoIcon } from '@radix-ui/react-icons'
 import {GitHubLogoIcon} from '@radix-ui/react-icons'
 import { IntercomScript, IntercomSettings } from './Embed'
+import Link from 'next/link'
 
 const Header: React.FC = () => {
 	return (
@@ -30,6 +31,12 @@ const Header: React.FC = () => {
 							</DialogTrigger>
 							<JoinForm />
 						</Dialog> */}
+						<Link
+							href="/docs"
+							className="text-base font-medium text-slate-500 hover:text-black"
+						>
+							Docs
+						</Link>
 						<DiscordLogoIcon className="text-base font-medium text-slate-500 hover:text-black cursor-pointer" 
 							style={{ height: '24px', width: '24px' }}
 							onClick={() => window.open("https://discord.gg/tXaSJS5S", "_blank")}

@@ -1,71 +1,73 @@
+"use client"
 import Link from 'next/link'
 import {
-	Home,
-	LineChart,
-	Package,
-	ShoppingCart,
-	Users
+	Network,
+	ChevronRight,
+	ChevronDown,
+	Home
 } from 'lucide-react'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Badge } from '@/components/ui/badge'
+import {
+	Collapsible,
+	CollapsibleContent,
+	CollapsibleTrigger,
+} from "@/components/ui/collapsible"
+  
 
 export default function DocsSidebar ({ children }: { children: React.ReactNode }) {
+	const [isOpen, setIsOpen] = useState(false)
+
+	useEffect(() => {
+		const storedIsOpen = localStorage.getItem('sidebarCollapsed')
+		if (storedIsOpen !== null) {
+			setIsOpen(JSON.parse(storedIsOpen))
+		}
+	}, [])
+
+	const toggleCollapse = () => {
+		const newIsOpen = !isOpen
+		setIsOpen(newIsOpen)
+		localStorage.setItem('sidebarCollapsed', JSON.stringify(newIsOpen))
+	}
+
 	return (
-		<div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] fixed left-0 top-20">
+		<div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] fixed left-0 top-20 overflow-y-auto">
 			<div className="hidden border-r bg-muted/40 md:block">
 				<div className="flex h-full max-h-screen flex-col gap-2 overflow-y-auto">
-
 					<div className="flex-1">
 						<nav className="grid items-start px-2 text-sm font-medium lg:px-4">
 							<Link
-								href="#"
+								href="/docs"
 								className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
 							>
 								<Home className="h-4 w-4" />
-                Dashboard
+								Get Started
 							</Link>
-							<Link
-								href="#"
-								className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-							>
-								<ShoppingCart className="h-4 w-4" />
-                Orders
-								<Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                  6
-								</Badge>
-							</Link>
-							<Link
-								href="#"
-								className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
-							>
-								<Package className="h-4 w-4" />
-                Products{' '}
-							</Link>
-							<Link
-								href="#"
-								className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-							>
-								<Users className="h-4 w-4" />
-                Customers
-							</Link>
-							<Link
-								href="#"
-								className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-							>
-								<LineChart className="h-4 w-4" />
-                Analytics
-							</Link>
+							<Collapsible open={isOpen} onOpenChange={toggleCollapse}>
+								<CollapsibleTrigger className="flex items-center justify-between gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary">
+									<div className="flex items-center gap-2">
+										<Network className="h-4 w-4" />
+										Subnets
+									</div>
+									{isOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
+								</CollapsibleTrigger>
+								<CollapsibleContent className='ml-4'>
+									<Link href="/docs/subnet/1" className="block rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary">
+										1: Text Prompting
+									</Link>
+								</CollapsibleContent>
+							</Collapsible>
 						</nav>
 					</div>
-
 				</div>
 			</div>
-			<div className="flex flex-col">
-
-				<main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+			<div className="flex flex-col overflow-y-auto">
+				<main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 overflow-y-auto max-h-[calc(100vh-8rem)]">
 					{children}
 				</main>
 			</div>
 		</div>
 	)
 }
+

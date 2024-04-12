@@ -1,0 +1,43 @@
+import React from 'react'
+import Header from '@/components/Header'
+import DocsSidebar from '@/components/Docs/Sidebar'
+import APICall from '@/components/Docs/APICall';
+
+<Header />
+<DocsSidebar>
+
+
+# Classify Prompt for Subnet 1
+
+This API endpoint allows you to classify a prompt or a list of prompts into predefined categories, specifically designed for Subnet 1's mining operations. It supports classifications into 'date', 'qa', or 'math' categories based on the content of the prompt.
+
+<div className="text-left items-left">
+<APICall />
+</div>
+
+## Endpoint
+
+`POST https://api.taoinfra.com/subnet/1/mining/util/classify_prompt`
+
+## Request Body
+
+You need to send a JSON object containing the prompt you wish to classify.
+
+```json
+{
+  "prompt": "string"
+}
+```
+
+## Responses
+
+Returns the classification of the prompt.
+
+```json
+{
+  "classification": "date"
+}
+```
+
+
+</DocsSidebar>

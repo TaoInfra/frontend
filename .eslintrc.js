@@ -42,7 +42,8 @@ module.exports = {
 		"components/ui/**",
 		".eslintrc.js",
 		"next.config.js",
-		"postcss.config.js"
+		"postcss.config.js",
+		"**/*.mdx"
 	  ],
 }  
 
