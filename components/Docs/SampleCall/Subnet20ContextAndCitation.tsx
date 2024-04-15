@@ -105,10 +105,10 @@ const APIComponent = () => {
 					</div>
 				))}
 				<button type="button" onClick={addData} className="mb-4 px-4 py-2 bg-blue-500 text-white rounded">Add Data</button>
-                <div>
+				<div>
 
-				<button type="submit" className="px-4 py-2 bg-black text-white rounded">Get Context and Citations</button>
-                </div>
+					<button type="submit" className="px-4 py-2 bg-black text-white rounded">Get Context and Citations</button>
+				</div>
 			</form>
 
 			{response && (
