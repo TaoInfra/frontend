@@ -43,7 +43,8 @@ module.exports = {
 		".eslintrc.js",
 		"next.config.js",
 		"postcss.config.js",
-		"**/*.mdx"
+		"**/*.mdx",
+		"mdx-components.tsx"
 	  ],
 }  
 

@@ -13,51 +13,90 @@ import {
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from "@/components/ui/collapsible"
-  
 
-export default function DocsSidebar ({ children }: { children: React.ReactNode }) {
-	const [isOpen, setIsOpen] = useState(false)
+interface SidebarItem {
+  children: Record<string, SidebarItem> | null;
+  link: string;
+  icon?: React.FC<React.SVGProps<SVGSVGElement>>;
+}
 
-	useEffect(() => {
-		const storedIsOpen = localStorage.getItem('sidebarCollapsed')
-		if (storedIsOpen !== null) {
-			setIsOpen(JSON.parse(storedIsOpen))
-		}
-	}, [])
-
-	const toggleCollapse = () => {
-		const newIsOpen = !isOpen
-		setIsOpen(newIsOpen)
-		localStorage.setItem('sidebarCollapsed', JSON.stringify(newIsOpen))
+const sidebarItems: Record<string, SidebarItem> = {
+	"Get Started": { 
+		"children": null,
+		"link": "/",
+		"icon": Home
+	},
+	"Subnets" : {
+		"children": {
+			"1: Text Prompting": {
+				"children": null,
+				"link": "/subnet/1",
+				"icon": Network
+			},
+			"20: BitAgent": {
+				"children": null,
+				"link": "/subnet/20",
+				"icon": Network
+			}
+		},
+		"link": "/subnets",
+		"icon": Network
 	}
 
+};
+
+const SidebarItem: React.FC<{ item: SidebarItem, path?: string }> = ({ item, path = '' }) => {
+	const [isOpen, setIsOpen] = useState(false);
+
+	useEffect(() => {
+		const storedIsOpen = localStorage.getItem(`sidebarCollapsed_${path}`);
+		if (storedIsOpen !== null) {
+			setIsOpen(JSON.parse(storedIsOpen));
+		}
+	}, [path]);
+
+	const toggleCollapse = () => {
+		const newIsOpen = !isOpen;
+		setIsOpen(newIsOpen);
+		localStorage.setItem(`sidebarCollapsed_${path}`, JSON.stringify(newIsOpen));
+	};
+
+	if (item.children) {
+		return (
+			<Collapsible open={isOpen} onOpenChange={toggleCollapse}>
+				<CollapsibleTrigger className="flex items-center justify-between gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary">
+					<div className="flex items-center gap-2">
+						{item.icon && <item.icon className="h-4 w-4" />}
+						{path.split('/').pop()}
+					</div>
+					{isOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
+				</CollapsibleTrigger>
+				<CollapsibleContent className='ml-4'>
+					{Object.entries(item.children).map(([key, child]) => (
+						<SidebarItem key={key} item={child} path={`${path}/${key}`} />
+					))}
+				</CollapsibleContent>
+			</Collapsible>
+		);
+	}
+
+	return (
+		<Link href={`/docs${item.link}`} className="block rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary">
+			{path.split('/').pop()}
+		</Link>
+	);
+};
+
+export default function DocsSidebar ({ children }: { children: React.ReactNode }) {
 	return (
 		<div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] fixed left-0 top-20 overflow-y-auto">
 			<div className="hidden border-r bg-muted/40 md:block">
 				<div className="flex h-full max-h-screen flex-col gap-2 overflow-y-auto">
 					<div className="flex-1">
 						<nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-							<Link
-								href="/docs"
-								className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-							>
-								<Home className="h-4 w-4" />
-								Get Started
-							</Link>
-							<Collapsible open={isOpen} onOpenChange={toggleCollapse}>
-								<CollapsibleTrigger className="flex items-center justify-between gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary">
-									<div className="flex items-center gap-2">
-										<Network className="h-4 w-4" />
-										Subnets
-									</div>
-									{isOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
-								</CollapsibleTrigger>
-								<CollapsibleContent className='ml-4'>
-									<Link href="/docs/subnet/1" className="block rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary">
-										1: Text Prompting
-									</Link>
-								</CollapsibleContent>
-							</Collapsible>
+							{Object.entries(sidebarItems).map(([key, item]) => (
+								<SidebarItem key={key} item={item} path={key} />
+							))}
 						</nav>
 					</div>
 				</div>
@@ -68,6 +107,5 @@ export default function DocsSidebar ({ children }: { children: React.ReactNode }
 				</main>
 			</div>
 		</div>
-	)
+	);
 }
-

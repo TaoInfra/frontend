@@ -1,0 +1,63 @@
+
+import React from 'react'
+import Header from '@/components/Header'
+import DocsSidebar from '@/components/Docs/Sidebar'
+import APICall from '@/components/Docs/SampleCall/Subnet20ContextAndCitation';
+
+<Header />
+<DocsSidebar>
+
+
+# Get Context and Citations for Subnet 20
+
+This API endpoint allows you to extract relevant context and citations based on a given prompt, a list of URLs, and a list of datas. 
+It uses TF-IDF trained on historical data to find the most relevant passages from the provided URLs and returns them along with their source citations.
+
+<div className="text-left items-left">
+<APICall />
+</div>
+
+## Endpoint
+
+`POST https://api.taoinfra.com/subnet/20/mining/util/context_and_citations`
+
+## Request Body
+
+You need to send a JSON object containing the list of URLs, the prompt, and the list of datas.
+
+
+```json
+{
+  "urls": [
+    "https://example.com/article1",
+    "https://example.com/article2"
+  ],
+  "prompt": "What is the impact of blockchain technology on finance?",
+  "datas": [
+    {
+      "source": "https://example.com/article1",
+      "context": "This is the context of article 1"
+    },
+    {
+      "source": "https://example.com/article2",
+      "context": "This is the context of article 2"
+    }
+  ]
+}
+```
+
+## Response 
+
+```json
+{
+  "context": "This is the context of article 1",
+  "citations": [
+    {
+      "source": "https://example.com/article1",
+      "citation": "Citation 1 text"
+    }
+  ]
+}
+```
+
+</DocsSidebar>
