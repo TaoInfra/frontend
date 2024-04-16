@@ -1,5 +1,5 @@
 import DocsSidebar from "@/components/Dashboard/Layout";
-import SubtensorList from "@/components/Dashboard/Home/SubtensorList";
+import SubtensorList from "@/components/Dashboard/Home/AlertList";
 import React from 'react'
 
 const DashboardPage: React.FC = () => {

@@ -23,14 +23,14 @@ const Header: React.FC = () => {
 						</a>
 					</div>
 					<nav className="hidden md:flex items-center space-x-10">
-						{/* <Dialog>
+						<Dialog>
 							<DialogTrigger asChild>
 								<a href="#" className="text-base font-medium text-slate-500 hover:text-black">
 									Get Started
 								</a>
 							</DialogTrigger>
 							<JoinForm />
-						</Dialog> */}
+						</Dialog>
 						<Link
 							href="/docs"
 							className="text-base font-medium text-slate-500 hover:text-black"

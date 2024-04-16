@@ -19,5 +19,25 @@ type BreadcrumbData = {
     label: string;
     href?: string;
 }
-export type { ApiKeyData, UserData, BreadcrumbData }
+
+
+type AlertData = {
+    _id: string;
+    user_id: string;
+    easycron_id: string;
+    active: boolean;
+    alert_type: 'registration_fee';
+    name: string;
+    cron: '*/20 * * * *';
+    last_sent: number;
+    date_created: number;
+    persistent: boolean;
+    metadata?: {
+        subnet_id?: number;
+        price_cutoff?: number;
+        webhook_url?: string;
+    };
+}
+
+export type { ApiKeyData, UserData, BreadcrumbData, AlertData }
 
