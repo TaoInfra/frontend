@@ -52,9 +52,15 @@ const AlertListCard = () => {
 
 	const [triggerGetAlerts, setTriggerGetAlerts] = useState(0);
 	const [alerts, setAlerts] = useState<AlertData[]>([]);
-	const key: ApiKeyData = getApiKeys('admin')[0];
+	const [key, setKey] = useState<ApiKeyData | null>(null);
+
+	useEffect(() => {
+		const fetchedKey = getApiKeys('admin')[0];
+		setKey(fetchedKey);
+	}, []);
 
 	async function getAlerts() {
+		if (!key) return;
 		const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/alert/retrieve`, {
 			method: 'GET',
 			headers: {
@@ -71,7 +77,7 @@ const AlertListCard = () => {
 
 	useEffect(() => {
 		getAlerts();
-	}, [triggerGetAlerts]);
+	}, [triggerGetAlerts, key]);
 
 	return (
 		<div>
