@@ -39,7 +39,7 @@ const Header: React.FC = () => {
 						</Link>
 						<DiscordLogoIcon className="text-base font-medium text-slate-500 hover:text-black cursor-pointer" 
 							style={{ height: '24px', width: '24px' }}
-							onClick={() => window.open("https://discord.gg/tXaSJS5S", "_blank")}
+							onClick={() => window.open("https://discord.gg/Jg4wU3M6", "_blank")}
 						/>
 						<GitHubLogoIcon className="text-base font-medium text-slate-500 hover:text-black cursor-pointer" 
 							style={{ height: '24px', width: '24px' }}
