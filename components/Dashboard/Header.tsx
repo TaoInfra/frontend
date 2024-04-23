@@ -110,7 +110,7 @@ export default function DashboardHeader ({ children, breadcrumbList }: { childre
 						</nav>
 					</SheetContent>
 				</Sheet>
-				<Breadcrumb className="hidden md:flex">
+				<Breadcrumb className="flex">
 					<BreadcrumbList>
 						{breadcrumbList.map((item, index) => (
 							<Fragment key={item.label}>
@@ -177,7 +177,7 @@ export default function DashboardHeader ({ children, breadcrumbList }: { childre
 					</DropdownMenuContent>
 				</DropdownMenu>
 			</header>
-			<main className="">
+			<main>
 				{children}
 			</main>
 			<IntercomScript />

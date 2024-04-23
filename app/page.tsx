@@ -4,7 +4,7 @@ import BadgeWithCopy from '@/components/Landing/JoinGlobal'
 import Hero from '@/components/Landing/Hero'
 import Footer from '@/components/Footer'
 
-export default function Home () {
+export default function Home() {
 	return (
 		<div className='min-h-screen'>
 			<Header />

@@ -9,5 +9,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 		h2: (props) => <h2 {...props} className="prose text-xl font-bold" />,
 		h3: (props) => <h3 {...props} className="prose text-lg font-bold" />,
 		a: (props) => <a {...props} className="prose text-green-500" />,
+		code: (props) => <code {...props} className="prose text-sm lg:text-base" />,
 	}
 }

@@ -34,7 +34,7 @@ const APIComponent = () => {
 	};
 
 	return (
-		<div className="max-w-4xl  p-4 bg-white shadow-md rounded-lg">
+		<div className="max-w-4xl p-3 sm:p-4 bg-white shadow-md rounded-lg">
 			<h2 className="text-xl font-bold text-gray-900">Classify Prompt for Subnet 1</h2>
 			<p className="text-gray-600">This endpoint classifies a prompt into categories: &apos;date&apos;, &apos;qa&apos;, or &apos;math&apos;.</p>
 
