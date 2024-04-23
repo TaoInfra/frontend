@@ -1,6 +1,7 @@
 "use client"
 
-import * as React from "react"
+import React, { Fragment, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from "next/image"
 import Link from "next/link"
 import {
@@ -33,19 +34,18 @@ import { BreadcrumbData } from '@/types'
 
 export default function DashboardHeader ({ children, breadcrumbList }: { children: React.ReactNode, breadcrumbList: BreadcrumbData[] }) {
 	const user = getUser();
+	const router = useRouter();
 
-	React.useEffect(() => {
+	useEffect(() => {
 		if (!user) {
-			window.location.href = '/';
+			router.push('/');
 		}
 	}, [user]);
 
 
 	function handleLogout() {
-		// Clear everything from local storage
 		localStorage.clear();
-		// Redirect to the login page
-		window.location.href = '/';
+		router.push('/');
 	}
 
 
@@ -113,7 +113,7 @@ export default function DashboardHeader ({ children, breadcrumbList }: { childre
 				<Breadcrumb className="hidden md:flex">
 					<BreadcrumbList>
 						{breadcrumbList.map((item, index) => (
-							<>
+							<Fragment key={item.label}>
 								{index > 0 && <BreadcrumbSeparator />}
 								<BreadcrumbItem key={index}>
                             
@@ -128,7 +128,7 @@ export default function DashboardHeader ({ children, breadcrumbList }: { childre
 										)
 									}
 								</BreadcrumbItem>
-							</>
+							</Fragment>
 						))}
 					</BreadcrumbList>
 				</Breadcrumb>
@@ -148,6 +148,7 @@ export default function DashboardHeader ({ children, breadcrumbList }: { childre
 							className="overflow-hidden rounded-full"
 						>
 							<img
+								suppressHydrationWarning
 								src={`https://api.dicebear.com/8.x/lorelei/svg?seed=${user?._id}`}
 								width={36}
 								height={36}
