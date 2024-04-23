@@ -107,7 +107,7 @@ export default function DashboardHeader ({ children, breadcrumbList }: { childre
 									<LineChart className="h-5 w-5" />
                   Settings
 								</Link> */}
-						</div>
+						</nav>
 					</SheetContent>
 				</Sheet>
 				<Breadcrumb className="hidden md:flex">
@@ -176,12 +176,12 @@ export default function DashboardHeader ({ children, breadcrumbList }: { childre
 						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
-			</div>
-			<div>
+			</header>
+			<main className="">
 				{children}
 			</main>
 			<IntercomScript />
 			<IntercomSettings user={null} />
 		</div>
-
-	)}
+	)
+}

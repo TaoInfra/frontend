@@ -13,8 +13,8 @@ import {
 } from "@/components/ui/tooltip"
 import DashboardHeader from "./Header"
 import { BreadcrumbData } from "@/types"
-export default function DashboardLayout ({ children, breadcrumbList }: { children: React.ReactNode, breadcrumbList: BreadcrumbData[] }) {
 
+export default function DashboardLayout ({ children, breadcrumbList }: { children: React.ReactNode, breadcrumbList: BreadcrumbData[] }) {
 	return (
 		<div className="flex min-h-screen w-full flex-col bg-muted/40">
 			<aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
@@ -23,7 +23,13 @@ export default function DashboardLayout ({ children, breadcrumbList }: { childre
 						href="#"
 						className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-secondary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
 					>
-						<Image src="/taoinfra-logo.png" alt="Taoinfra" width={32} height={32} className="h-4 w-4 transition-all group-hover:scale-110" />
+						<Image
+							alt="Taoinfra"
+							className="h-4 w-4 transition-all group-hover:scale-110"
+							height={32}
+							src="/taoinfra-logo.png"
+							width={32}
+						/>
 						<span className="sr-only">Taoinfra </span>
 					</Link>
 					<Tooltip>
@@ -100,7 +106,7 @@ export default function DashboardLayout ({ children, breadcrumbList }: { childre
 						</TooltipTrigger>
 						<TooltipContent side="right">Settings</TooltipContent>
     </Tooltip> */}
-				</nav> 
+				</nav>
 			</aside>
 			<DashboardHeader breadcrumbList={breadcrumbList}>
 				{children}
