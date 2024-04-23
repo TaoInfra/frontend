@@ -107,7 +107,7 @@ export default function DashboardHeader ({ children, breadcrumbList }: { childre
 									<LineChart className="h-5 w-5" />
                   Settings
 								</Link> */}
-						</nav>
+						</div>
 					</SheetContent>
 				</Sheet>
 				<Breadcrumb className="hidden md:flex">
@@ -116,11 +116,9 @@ export default function DashboardHeader ({ children, breadcrumbList }: { childre
 							<Fragment key={item.label}>
 								{index > 0 && <BreadcrumbSeparator />}
 								<BreadcrumbItem key={index}>
-                            
 									{
 										item.href ? (
 											<BreadcrumbLink asChild>
-                                    
 												<Link href={item.href || '#'}>{item.label}</Link>
 											</BreadcrumbLink>
 										) : (
@@ -162,18 +160,24 @@ export default function DashboardHeader ({ children, breadcrumbList }: { childre
 						<DropdownMenuSeparator />
 						<DropdownMenuItem
 							onClick={() => {window.location.href = '/dashboard/settings'}}
-						>Settings</DropdownMenuItem>
+						>
+							Settings
+						</DropdownMenuItem>
 						<DropdownMenuItem
 							onClick={handleIntercomSupportOpen}
-						>Support</DropdownMenuItem>
+						>
+							Support
+						</DropdownMenuItem>
 						<DropdownMenuSeparator />
 						<DropdownMenuItem
 							onClick={handleLogout}
-						>Logout</DropdownMenuItem>
+						>
+							Logout
+						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
-			</header>
-			<main className="">
+			</div>
+			<div>
 				{children}
 			</main>
 			<IntercomScript />
