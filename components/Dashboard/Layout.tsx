@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import {
@@ -15,7 +15,13 @@ import DashboardHeader from "./Header"
 import { BreadcrumbData } from "@/types"
 
 export default function DashboardLayout ({ children, breadcrumbList }: { children: React.ReactNode, breadcrumbList: BreadcrumbData[] }) {
-	return (
+	const [isClient, setIsClient] = useState(false)
+
+	useEffect(() => {
+		setIsClient(true)
+	}, [])
+
+	return isClient ? (
 		<div className="flex min-h-screen w-full flex-col bg-muted/40">
 			<aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
 				<nav className="flex flex-col items-center gap-4 px-2 sm:py-4">
@@ -112,6 +118,6 @@ export default function DashboardLayout ({ children, breadcrumbList }: { childre
 				{children}
 			</DashboardHeader>
 		</div>
-	)
+	) : null
 }
 

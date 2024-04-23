@@ -1,7 +1,9 @@
 import React from 'react'
-import './globals.css'
-import { Toaster } from "@/components/ui/toaster"
+import dynamic from 'next/dynamic';
 import { TooltipProvider } from '@/components/ui/tooltip'
+import './globals.css'
+
+const Toaster = dynamic(() => import('../components/ui/toaster'), { ssr: false })
 
 export const metadata = {
 	title: {
