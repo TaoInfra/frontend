@@ -5,7 +5,7 @@ import Footer from '@/components/Footer'
 export default function Terms() {
 	return (
 		<div className='min-h-screen'>
-			<Header/>
+			<Header />
 			<main className="flex flex-col items-center py-2 md:p-6 xl:px-20 2xl:px-24">
 				<h1 className='text-4xl font-bold mb-10'>Terms of Service</h1>
 				<object data="https://general-s3-public.s3.us-east-2.amazonaws.com/terms-of-service.pdf" type="application/pdf" width="100%" height="800px">
