@@ -4,7 +4,8 @@ import {
 	Network,
 	ChevronRight,
 	ChevronDown,
-	Home
+	Home,
+	PanelLeft
 } from 'lucide-react'
 import React, { useState, useEffect } from 'react'
 import {
@@ -12,6 +13,8 @@ import {
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from "@/components/ui/collapsible"
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Button } from '@/components/ui/button';
 
 interface SidebarItem {
   children: Record<string, SidebarItem> | null;
@@ -86,25 +89,41 @@ const SidebarItem: React.FC<{ item: SidebarItem, path?: string }> = ({ item, pat
 	);
 };
 
-export default function DocsSidebar ({ children }: { children: React.ReactNode }) {
+const DocSidebarItems = () => (
+	<div className="flex h-full max-h-screen flex-col gap-2 overflow-y-auto">
+		<div className="flex-1">
+			<nav className="grid items-start px-2 text-sm font-medium lg:px-4">
+				{Object.entries(sidebarItems).map(([key, item]) => (
+					<SidebarItem key={key} item={item} path={key}/>
+				))}
+			</nav>
+		</div>
+	</div>
+);
+
+export default function DocsSidebar({ children }: { children: React.ReactNode }) {
 	return (
-		<div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] fixed left-0 top-20 overflow-y-auto">
-			<div className="hidden border-r bg-muted/40 md:block">
-				<div className="flex h-full max-h-screen flex-col gap-2 overflow-y-auto">
-					<div className="flex-1">
-						<nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-							{Object.entries(sidebarItems).map(([key, item]) => (
-								<SidebarItem key={key} item={item} path={key} />
-							))}
-						</nav>
-					</div>
+		<div
+			className="grid min-h-screen w-full grid-cols-[50px_1fr] md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] fixed left-0 top-20 overflow-y-auto">
+			<Sheet>
+				<SheetTrigger asChild>
+					<Button size="icon" variant="outline" className="relative left-1.5 top-3 md:hidden">
+						<PanelLeft className="h-5 w-5"/>
+						<span className="sr-only">Toggle Menu</span>
+					</Button>
+				</SheetTrigger>
+				<SheetContent side="left" className="sm:max-w-xs">
+					<DocSidebarItems />
+				</SheetContent>
+				<div className="hidden md:block border-r bg-muted/40">
+					<DocSidebarItems />
 				</div>
-			</div>
-			<div className="flex flex-col overflow-y-auto">
-				<main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 overflow-y-auto max-h-[calc(100vh-8rem)]">
-					{children}
-				</main>
-			</div>
+				<div className="flex flex-col overflow-y-auto">
+					<main className="flex flex-1 flex-col gap-4 pt-2 pr-2 sm:p-4 lg:gap-6 lg:p-6 overflow-y-auto max-h-[calc(100vh-8rem)]">
+						{children}
+					</main>
+				</div>
+			</Sheet>
 		</div>
 	);
 }
