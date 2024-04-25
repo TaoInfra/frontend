@@ -8,7 +8,7 @@ const APIComponent = () => {
 	const [response, setResponse] = useState(null);
 	const [error, setError] = useState('');
 
-	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, index: number, type: string) => {
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, index: number, type: string) => {
 		if (type === 'url') {
 			const newUrls = [...urls];
 			newUrls[index] = e.target.value;
@@ -91,14 +91,14 @@ const APIComponent = () => {
 							type="text"
 							id={`source-${index}`}
 							value={data.source}
-							onChange={(e) => handleInputChange(e, index, 'source')}
+							onChange={e => handleInputChange(e, index, 'source')}
 							className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
 							placeholder="Enter source"
 						/>
 						<textarea
 							id={`context-${index}`}
 							value={data.context}
-							onChange={(e) => handleInputChange(e as any, index, 'context')}
+							onChange={e => handleInputChange(e, index, 'context')}
 							className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
 							placeholder="Enter context"
 						/>
