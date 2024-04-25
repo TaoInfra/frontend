@@ -18,8 +18,8 @@ const Header: React.FC<{ isMobileNav?: boolean }> = ({ isMobileNav = false } ) =
 
 	return (
 		<header className="sticky top-0 z-50 bg-transparent backdrop-blur-md">
-			<div className="w-full mx-auto px-6 md:px-12 ">
-				<div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
+			<div className="w-full mx-auto px-6 md:px-12">
+				<div className="flex justify-between items-center py-4 sm:py-6 md:justify-start md:space-x-10">
 					<div className="flex justify-start md:w-0 md:flex-1">
 						<a href="/">
 							<span className="sr-only">Taoinfra</span>

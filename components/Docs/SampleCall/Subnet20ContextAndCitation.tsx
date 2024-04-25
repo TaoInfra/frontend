@@ -54,9 +54,9 @@ const APIComponent = () => {
 	};
 
 	return (
-		<div className="max-w-4xl p-2.5 sm:p-4 bg-white shadow-md rounded-lg">
-			<h2 className="text-xl font-bold text-gray-900">Get Context and Citations for Subnet 20</h2>
-			<p className="text-gray-600">This endpoint extracts relevant context and citations based on a given prompt, a list of URLs, and a list of datas.</p>
+		<div className="max-w-4xl p-2.5 sm:p-4 ml-1 bg-white shadow-md rounded-lg">
+			<h2 className="text-xl font-bold text-gray-900 mb-2">Get Context and Citations for Subnet 20</h2>
+			<p className="text-sm sm:text-base text-gray-600">This endpoint extracts relevant context and citations based on a given prompt, a list of URLs, and a list of datas.</p>
 
 			<form onSubmit={handleSubmit} className="mt-4">
 				<div className="mb-4">

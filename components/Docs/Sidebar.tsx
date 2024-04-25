@@ -103,8 +103,7 @@ const DocSidebarItems = () => (
 
 export default function DocsSidebar({ children }: { children: React.ReactNode }) {
 	return (
-		<div
-			className="grid min-h-screen w-full grid-cols-[50px_1fr] md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] fixed left-0 top-20 overflow-y-auto">
+		<div className="grid min-h-screen w-full grid-cols-[50px_1fr] md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] fixed left-0 top-16 sm:top-20 pr-1.5 overflow-y-auto">
 			<Sheet>
 				<SheetTrigger asChild>
 					<Button size="icon" variant="outline" className="relative left-1.5 top-3 md:hidden">
@@ -119,7 +118,7 @@ export default function DocsSidebar({ children }: { children: React.ReactNode })
 					<DocSidebarItems />
 				</div>
 				<div className="flex flex-col overflow-y-auto">
-					<main className="flex flex-1 flex-col gap-4 pt-2 pr-2 sm:p-4 lg:gap-6 lg:p-6 overflow-y-auto max-h-[calc(100vh-8rem)]">
+					<main className="flex flex-1 flex-col gap-3.5 pt-2 sm:pt-4 sm:pr-4 lg:gap-6 lg:p-6 overflow-y-auto max-h-[calc(100vh-8rem)]">
 						{children}
 					</main>
 				</div>
