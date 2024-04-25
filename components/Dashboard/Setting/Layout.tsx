@@ -12,12 +12,14 @@ import {
 import { getUser, setUser, getApiKeys } from "@/lib/storage"
 import { Input } from "@/components/ui/input"
 import Layout from "@/components/Dashboard/Layout"
+import { useToast } from '@/components/ui/use-toast';
 
 export default function Setting() {
 	const user = getUser()
 	if (!user) {
 		return <></>
 	}
+	const { toast } = useToast();
 	const [name, setName] = useState(user.name)
 
 	async function updateName() {
@@ -35,24 +37,25 @@ export default function Setting() {
 				},
 				body: JSON.stringify({ name })
 			})
+			toast({ title: 'Success!', description: 'Profile name has been updated' })
 			//@ts-ignore
 			setUser({ ...user, name: name })
-
 		} catch (error) {
 			console.log(error)
 		}
 	}
+
 	return (
 		<Layout breadcrumbList={[{label: "Dashboard", href: "/dashboard"}, { label: "Settings"}]}>
 			<div className="flex w-full flex-col min-h-[calc(100vh-84px)]">
 				<div className="flex flex-1 flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10">
 					<div className="mx-auto grid w-full max-w-5xl gap-2">
-						<h1 className="text-3xl font-semibold">Settings</h1>
+						<h1 className="text-3xl font-semibold">
+							Settings
+						</h1>
 					</div>
 					<div className="mx-auto grid w-full max-w-5xl items-start gap-6 md:grid-cols-[170px_1fr]">
-						<nav
-							className="grid gap-4 text-sm text-muted-foreground"
-						>
+						<nav className="grid gap-4 text-sm text-muted-foreground">
 							<Link href="#" className="font-semibold text-primary">
 								General
 							</Link>
@@ -72,7 +75,7 @@ export default function Setting() {
 								</CardHeader>
 								<CardContent>
 									<Input placeholder="Name" value={name} onChange={(e) => setName(e.target.value)}/>
-									<Input placeholder="Email" value={user?.email_id} disabled  className="mt-2"/>
+									<Input placeholder="Email" value={user?.email_id} disabled className="mt-2"/>
 								</CardContent>
 								<CardFooter className="border-t py-4">
 									<Button
