@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
 import { getApiKeys } from "@/lib/storage";
-import { DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { DialogClose, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const CreateAlertDialog = ({ setTriggerGetAlerts }: { setTriggerGetAlerts: (triggerGetAlerts: number) => void }) => {
 	const [alertType, setAlertType] = useState('registration_fee');
@@ -116,9 +116,11 @@ const CreateAlertDialog = ({ setTriggerGetAlerts }: { setTriggerGetAlerts: (trig
 					/>
 					<Label htmlFor="persistent">Persistent</Label>
 				</div>
-				<Button type="button" onClick={handleSubmit} disabled={loading}>
-					{loading ? "Creating..." : "Create Alert"}
-				</Button>
+				<DialogClose>
+					<Button type="button" onClick={handleSubmit} disabled={loading} aria-label="Close">
+						{loading ? "Creating..." : "Create Alert"}
+					</Button>
+				</DialogClose>
 			</div>
 		</DialogContent>
 	);
