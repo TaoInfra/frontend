@@ -10,26 +10,45 @@ import {
 	Dialog,
 	DialogTrigger,
 } from "@/components/ui/dialog"
+import { useToast } from '@/components/ui/use-toast';
 
 const SingleAlert = ({ alert, setAlerts, alerts }: { alert: AlertData, setAlerts: (alerts: AlertData[]) => void, alerts: AlertData[] }) => {
 
+	const toast = useToast();
 	const [deleting, setDeleting] = useState(false);
 	const key: ApiKeyData = getApiKeys('admin')[0];
 	
 	async function deleteAlert() {
 		setDeleting(true);
-		await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/alert/delete`, {
+		console.log(alert)
+		const body = {
+			alert_id: alert._id
+		}
+		const resp = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/alert/delete`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 				"Taoinfra-Admin-Key": `${key.key}`
 			},
-			body: JSON.stringify({
-				alert_id: alert._id
-			})
+			body: JSON.stringify(body)
 		});
-		setDeleting(false);
-		setAlerts(alerts.filter((item) => item._id !== alert._id));
+
+		if (resp.status === 200) {
+			setDeleting(false);
+			setAlerts(alerts.filter((item) => item._id !== alert._id));
+			toast.toast({
+				title: 'Alert Deleted',
+				description: 'The alert has been deleted',
+			});
+		}
+		else {
+			setDeleting(false);
+			toast.toast({
+				title: 'Error',
+				description: 'An error occurred while deleting the alert',
+			});
+		}
+
 	}
 
 	return (
